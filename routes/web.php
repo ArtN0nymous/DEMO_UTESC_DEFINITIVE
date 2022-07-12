@@ -22,6 +22,9 @@ Route::get('/registrar-usuario', function () {
 Route::get('/index', function () {
     return view('index');
 });
+Route::get('/usuarios', function(){
+    return view('usuarios');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -31,3 +34,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
