@@ -22,6 +22,9 @@ Route::get('/registrar-usuario', function () {
 Route::get('/index', function () {
     return view('index');
 });
+Route::get('/bodega', function (){
+    return view('bodega');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
