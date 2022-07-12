@@ -1,0 +1,27 @@
+.contenido{
+    display: grid;
+    grid-template-columns: 25% 70%;
+}
+.contenido_tabla{
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.contenido_tabla_head_colum{
+    width: 25%;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #000;
+    padding: 0.3em;
+    font-size: 1.5rem;
+}
+.contenido_tabla_head{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+.contenido_tabla_head_colum_el{
+    text-decoration: none;
+    color: red;
+    font-size: 1.5rem;
+}
