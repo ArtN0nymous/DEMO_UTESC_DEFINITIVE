@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\articuloController;
+use App\Http\Controllers\bodegaController;
+use App\Http\Controllers\categoriaController;
+use App\Http\Controllers\marcaController;
+use App\Http\Controllers\proveedorController;
+use App\Http\Controllers\subcategoriaController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +29,12 @@ Route::get('/registrar-usuario', function () {
 Route::get('/index', function () {
     return view('index');
 });
-Route::get('/bodega', function (){
-    return view('bodega');
-});
+Route::get('/bodega',[bodegaController::class,'mostrar'])->name('bodega.mostrar');
+Route::post('/categoria/guardar',[categoriaController::class,'insertar'])->name('categoria.insertar');
+Route::post('/sucategoria/guardar', [subcategoriaController::class,'insertar'])->name('subcategoria.insertar');
+Route::post('/proveedor/guardar', [proveedorController::class,'guardar'])->name('proveedor.insertar');
+Route::post('/marca/guardar',[marcaController::class,'insertar'])->name('marca.insertar');
+Route::post('/articulo/guardar',[articuloController::class,'insertar'])->name('articulo.insertar');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
