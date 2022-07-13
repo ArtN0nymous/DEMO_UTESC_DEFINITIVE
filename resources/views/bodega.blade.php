@@ -28,36 +28,17 @@
     <table class='contenido_tabla'>
         <thead class='contenido_tabla_head'>
             <tr>
-                <th class='contenido_tabla_head_colum' >Articulos</th>
-                <th class='contenido_tabla_head_colum'>Solicitados</th>
-                <th class='contenido_tabla_head_colum'>Existencia</th>
-                <th class='contenido_tabla_head_colum'>Status</th>
-                <th class='contenido_tabla_head_colum'>Fecha</th>
-                <th class='contenido_tabla_head_colum'>Descripcion</th>
-                <th class='contenido_tabla_head_colum'>Pedir</th>
-                <th class='contenido_tabla_head_colum'>Maximos</th>
-                <th class='contenido_tabla_head_colum'>Marca</th>
-                <th class='contenido_tabla_head_colum'>Proveedor</th>
-                <th class='contenido_tabla_head_colum'>SubCategoria</th>
-                <th class='contenido_tabla_head_colum'>Operaciones</th>
+                <th class='contenido_tabla_head_colum' >Categorias</th>
+                <th class='contenido_tabla_head_colum'>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class='contenido_tabla_head_colum'>3454</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
-            </tr>
-
+            @foreach ($categorias as $cat)
+                <tr>
+                    <td class='contenido_tabla_head_colum'>{{$cat->nombre_cat}}</td>
+                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                </tr>
+            @endforeach
        </tbody>
     </table>
        <div style="border-color: green;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
@@ -79,36 +60,19 @@
        <table class='contenido_tabla'>
         <thead class='contenido_tabla_head'>
             <tr>
-                <th class='contenido_tabla_head_colum' >Articulos</th>
-                <th class='contenido_tabla_head_colum'>Solicitados</th>
-                <th class='contenido_tabla_head_colum'>Existencia</th>
-                <th class='contenido_tabla_head_colum'>Status</th>
-                <th class='contenido_tabla_head_colum'>Fecha</th>
-                <th class='contenido_tabla_head_colum'>Descripcion</th>
-                <th class='contenido_tabla_head_colum'>Pedir</th>
-                <th class='contenido_tabla_head_colum'>Maximos</th>
-                <th class='contenido_tabla_head_colum'>Marca</th>
-                <th class='contenido_tabla_head_colum'>Proveedor</th>
-                <th class='contenido_tabla_head_colum'>SubCategoria</th>
-                <th class='contenido_tabla_head_colum'>Operaciones</th>
+                <th class='contenido_tabla_head_colum' >Subcategoria</th>
+                <th class='contenido_tabla_head_colum'>Categoria</th>
+                <th class='contenido_tabla_head_colum'>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class='contenido_tabla_head_colum'>3454</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
-            </tr>
-
+            @foreach ($subcategorias_t as $sub)
+                <tr>
+                    <td class='contenido_tabla_head_colum'>{{$sub->nombre_Sub}}</td>
+                    <td class='contenido_tabla_head_colum'>{{$sub->categoria}}</td>
+                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                </tr>
+            @endforeach
        </tbody>
     </table>
        <div style="border-color: blue;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
@@ -127,36 +91,23 @@
        <table class='contenido_tabla'>
         <thead class='contenido_tabla_head'>
             <tr>
-                <th class='contenido_tabla_head_colum' >Articulos</th>
-                <th class='contenido_tabla_head_colum'>Solicitados</th>
-                <th class='contenido_tabla_head_colum'>Existencia</th>
-                <th class='contenido_tabla_head_colum'>Status</th>
-                <th class='contenido_tabla_head_colum'>Fecha</th>
-                <th class='contenido_tabla_head_colum'>Descripcion</th>
-                <th class='contenido_tabla_head_colum'>Pedir</th>
-                <th class='contenido_tabla_head_colum'>Maximos</th>
-                <th class='contenido_tabla_head_colum'>Marca</th>
-                <th class='contenido_tabla_head_colum'>Proveedor</th>
-                <th class='contenido_tabla_head_colum'>SubCategoria</th>
-                <th class='contenido_tabla_head_colum'>Operaciones</th>
+                <th class='contenido_tabla_head_colum' >Proveedor</th>
+                <th class='contenido_tabla_head_colum'>RFC</th>
+                <th class='contenido_tabla_head_colum'>Dirección</th>
+                <th class='contenido_tabla_head_colum'>Estatus</th>
+                <th class='contenido_tabla_head_colum'>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class='contenido_tabla_head_colum'>3454</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
-            </tr>
-
+            @foreach ($proveedores as $prov)
+                <tr>
+                    <td class='contenido_tabla_head_colum'>{{$prov->nombre_p}}</td>
+                    <td class='contenido_tabla_head_colum'>{{$prov->RFC}}</td>
+                    <td class='contenido_tabla_head_colum'>{{$prov->direccion}}</td>
+                    <td class='contenido_tabla_head_colum'>{{$prov->estatus}}</td>
+                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                </tr>
+            @endforeach
        </tbody>
     </table>
        <div style="border-color: violet;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
@@ -171,36 +122,17 @@
        <table class='contenido_tabla'>
         <thead class='contenido_tabla_head'>
             <tr>
-                <th class='contenido_tabla_head_colum' >Articulos</th>
-                <th class='contenido_tabla_head_colum'>Solicitados</th>
-                <th class='contenido_tabla_head_colum'>Existencia</th>
-                <th class='contenido_tabla_head_colum'>Status</th>
-                <th class='contenido_tabla_head_colum'>Fecha</th>
-                <th class='contenido_tabla_head_colum'>Descripcion</th>
-                <th class='contenido_tabla_head_colum'>Pedir</th>
-                <th class='contenido_tabla_head_colum'>Maximos</th>
-                <th class='contenido_tabla_head_colum'>Marca</th>
-                <th class='contenido_tabla_head_colum'>Proveedor</th>
-                <th class='contenido_tabla_head_colum'>SubCategoria</th>
-                <th class='contenido_tabla_head_colum'>Operaciones</th>
+                <th class='contenido_tabla_head_colum' >Marca</th>
+                <th class='contenido_tabla_head_colum'>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class='contenido_tabla_head_colum'>3454</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
-            </tr>
-
+            @foreach ($marcas as $marca)
+                <tr>
+                    <td class='contenido_tabla_head_colum'>{{$marca->marca_n}}</td>
+                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                </tr>
+            @endforeach
        </tbody>
     </table>
        <div style="border-color: red;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
