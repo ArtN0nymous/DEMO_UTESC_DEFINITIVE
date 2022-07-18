@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{asset('bootstrap-icons/font/bootstrap-icons.css')}}">
@@ -16,67 +17,51 @@
  <x-navbar/>
  </div> 
   <div>
-    <div style="border-color: gold;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
-        <label for="" style="font-size: 5rem">Categorias</label>
-        <form action="{{route('categoria.insertar')}}" method="post">
-            @csrf
-            <label for="">Nombre categoria</label>
-            <input type="text" name="nombre">
-            <input type="submit" value="Guardar">
-        </form>
-    </div>
-    <table class='contenido_tabla'>
-        <thead class='contenido_tabla_head'>
-            <tr>
-                <th class='contenido_tabla_head_colum' >Categorias</th>
-                <th class='contenido_tabla_head_colum'>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categorias as $cat)
+    <div class="contenedor__funcion">
+        <button type="button" class="btn btn-primary boton__funcion"  data-toggle="modal" data-target="#modal__categorias">Categorias  <i class="bi bi-plus-lg" > </i></button>
+        
+        <table class='contenido_tabla'>
+            <thead class='contenido_tabla_head'>
                 <tr>
-                    <td class='contenido_tabla_head_colum'>{{$cat->nombre_cat}}</td>
-                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    <th class='contenido_tabla_head_colum' >Categorias</th>
+                    <th class='contenido_tabla_head_colum'>Acciones</th>
                 </tr>
-            @endforeach
-       </tbody>
-    </table>
-       <div style="border-color: green;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
-        <label for="" style="font-size: 5rem">Subcategorias</label>
-        <form action="{{route('subcategoria.insertar')}}" method="post">
-            @csrf
-            <label for="">Nombre subcategoria</label>
-            <input type="text" name="nombre">
-            <label for="">¿A que categoria pertenece?</label>
-            <select name="categoria" id="">
+            </thead>
+            <tbody>
                 @foreach ($categorias as $cat)
-                    <option value="{{$cat->pk_categoria}}">{{$cat->nombre_cat}}</option>
+                    <tr>
+                        <td class='contenido_tabla_head_colum'>{{$cat->nombre_cat}}</td>
+                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    </tr>
                 @endforeach
-                <option value="" selected>Selecciona una categoria</option>
-            </select>
-            <input type="submit" value="guardar">
-        </form>
-       </div>
-       <table class='contenido_tabla'>
-        <thead class='contenido_tabla_head'>
-            <tr>
-                <th class='contenido_tabla_head_colum' >Subcategoria</th>
-                <th class='contenido_tabla_head_colum'>Categoria</th>
-                <th class='contenido_tabla_head_colum'>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($subcategorias_t as $sub)
+           </tbody>
+        </table>
+    </div>
+   
+       <div  class="contenedor__funcion">
+        <button type="button" class="btn btn-primary boton__funcion"  data-toggle="modal" data-target="#modal__subcategorias">Subcategorias  <i class="bi bi-plus-lg" > </i></button>
+        <table class='contenido_tabla'>
+            <thead class='contenido_tabla_head'>
                 <tr>
-                    <td class='contenido_tabla_head_colum'>{{$sub->nombre_Sub}}</td>
-                    <td class='contenido_tabla_head_colum'>{{$sub->categoria}}</td>
-                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    <th class='contenido_tabla_head_colum' >Subcategoria</th>
+                    <th class='contenido_tabla_head_colum'>Categoria</th>
+                    <th class='contenido_tabla_head_colum'>Opciones</th>
                 </tr>
-            @endforeach
-       </tbody>
-    </table>
-       <div style="border-color: blue;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
-        <label for="" style="font-size: 5rem">Proveedores</label>
+            </thead>
+            <tbody>
+                @foreach ($subcategorias_t as $sub)
+                    <tr>
+                        <td class='contenido_tabla_head_colum'>{{$sub->nombre_Sub}}</td>
+                        <td class='contenido_tabla_head_colum'>{{$sub->categoria}}</td>
+                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    </tr>
+                @endforeach
+           </tbody>
+        </table>
+       </div>
+      
+       <div  class="contenedor__funcion">
+        <label for="" class="titulo__funcion">Proveedores</label>
         <form action="{{route('proveedor.insertar')}}" method="post">
             @csrf
             <label for="">Nombre</label>
@@ -87,56 +72,58 @@
             <input type="text" name="direccion">
             <input type="submit" value="guardar">
         </form>
-       </div>
-       <table class='contenido_tabla'>
-        <thead class='contenido_tabla_head'>
-            <tr>
-                <th class='contenido_tabla_head_colum' >Proveedor</th>
-                <th class='contenido_tabla_head_colum'>RFC</th>
-                <th class='contenido_tabla_head_colum'>Dirección</th>
-                <th class='contenido_tabla_head_colum'>Estatus</th>
-                <th class='contenido_tabla_head_colum'>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($proveedores as $prov)
+        <table class='contenido_tabla'>
+            <thead class='contenido_tabla_head'>
                 <tr>
-                    <td class='contenido_tabla_head_colum'>{{$prov->nombre_p}}</td>
-                    <td class='contenido_tabla_head_colum'>{{$prov->RFC}}</td>
-                    <td class='contenido_tabla_head_colum'>{{$prov->direccion}}</td>
-                    <td class='contenido_tabla_head_colum'>{{$prov->estatus}}</td>
-                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    <th class='contenido_tabla_head_colum' >Proveedor</th>
+                    <th class='contenido_tabla_head_colum'>RFC</th>
+                    <th class='contenido_tabla_head_colum'>Dirección</th>
+                    <th class='contenido_tabla_head_colum'>Estatus</th>
+                    <th class='contenido_tabla_head_colum'>Opciones</th>
                 </tr>
-            @endforeach
-       </tbody>
-    </table>
-       <div style="border-color: violet;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
-        <label for="" style="font-size: 5rem">Marcas</label>
+            </thead>
+            <tbody>
+                @foreach ($proveedores as $prov)
+                    <tr>
+                        <td class='contenido_tabla_head_colum'>{{$prov->nombre_p}}</td>
+                        <td class='contenido_tabla_head_colum'>{{$prov->RFC}}</td>
+                        <td class='contenido_tabla_head_colum'>{{$prov->direccion}}</td>
+                        <td class='contenido_tabla_head_colum'>{{$prov->estatus}}</td>
+                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    </tr>
+                @endforeach
+           </tbody>
+        </table>
+       </div>
+       
+       <div class="contenedor__funcion">
+        <label for="" class="titulo__funcion">Marcas</label>
         <form action="{{route('marca.insertar')}}" method="post">
             @csrf
             <label for="">Nombre</label>
             <input type="text" name="nombre">
             <input type="submit" value="guardar">
         </form>
-       </div>
-       <table class='contenido_tabla'>
-        <thead class='contenido_tabla_head'>
-            <tr>
-                <th class='contenido_tabla_head_colum' >Marca</th>
-                <th class='contenido_tabla_head_colum'>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($marcas as $marca)
+        <table class='contenido_tabla'>
+            <thead class='contenido_tabla_head'>
                 <tr>
-                    <td class='contenido_tabla_head_colum'>{{$marca->marca_n}}</td>
-                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    <th class='contenido_tabla_head_colum' >Marca</th>
+                    <th class='contenido_tabla_head_colum'>Opciones</th>
                 </tr>
-            @endforeach
-       </tbody>
-    </table>
-       <div style="border-color: red;border-width: 2rem;border-style: solid;font-size: 3.5rem;">
-        <label for="" style="font-size: 5rem">Articulos</label>
+            </thead>
+            <tbody>
+                @foreach ($marcas as $marca)
+                    <tr>
+                        <td class='contenido_tabla_head_colum'>{{$marca->marca_n}}</td>
+                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    </tr>
+                @endforeach
+           </tbody>
+        </table>
+       </div>
+     
+       <div class="contenedor__funcion">
+        <label for="" class="titulo__funcion">Articulos</label>
         <form action="{{route('articulo.insertar')}}" method="post">
             @csrf
             <label for="">Nombre</label>
@@ -167,43 +154,44 @@
             </select>
             <input type="submit" value="guardar"/>
         </form>
-       </div>
-    <table class='contenido_tabla'>
-        <thead class='contenido_tabla_head'>
-            <tr>
-                <th class='contenido_tabla_head_colum' >Articulos</th>
-                <th class='contenido_tabla_head_colum'>Solicitados</th>
-                <th class='contenido_tabla_head_colum'>Existencia</th>
-                <th class='contenido_tabla_head_colum'>Status</th>
-                <th class='contenido_tabla_head_colum'>Fecha</th>
-                <th class='contenido_tabla_head_colum'>Descripcion</th>
-                <th class='contenido_tabla_head_colum'>Pedir</th>
-                <th class='contenido_tabla_head_colum'>Maximos</th>
-                <th class='contenido_tabla_head_colum'>Marca</th>
-                <th class='contenido_tabla_head_colum'>Proveedor</th>
-                <th class='contenido_tabla_head_colum'>SubCategoria</th>
-                <th class='contenido_tabla_head_colum'>Operaciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($articulos as $art)
-                <tr style="font-size: 3rem">
-                    <td class="contenido_tabla_head_column">{{$art->nombre_art}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->solicitados}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->existencia_pz}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->status}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->fecha}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->descripcion}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->pedir}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->maximos}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->marca}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->proveedor}}</td>
-                    <td class="contenido_tabla_head_column">{{$art->subcategoria}}</td>
-                    <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+        <table class='contenido_tabla'>
+            <thead class='contenido_tabla_head'>
+                <tr>
+                    <th class='contenido_tabla_head_colum' >Articulos</th>
+                    <th class='contenido_tabla_head_colum'>Solicitados</th>
+                    <th class='contenido_tabla_head_colum'>Existencia</th>
+                    <th class='contenido_tabla_head_colum'>Status</th>
+                    <th class='contenido_tabla_head_colum'>Fecha</th>
+                    <th class='contenido_tabla_head_colum'>Descripcion</th>
+                    <th class='contenido_tabla_head_colum'>Pedir</th>
+                    <th class='contenido_tabla_head_colum'>Maximos</th>
+                    <th class='contenido_tabla_head_colum'>Marca</th>
+                    <th class='contenido_tabla_head_colum'>Proveedor</th>
+                    <th class='contenido_tabla_head_colum'>SubCategoria</th>
+                    <th class='contenido_tabla_head_colum'>Operaciones</th>
                 </tr>
-            @endforeach
-       </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($articulos as $art)
+                    <tr style="font-size: 3rem">
+                        <td class="contenido_tabla_head_column">{{$art->nombre_art}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->solicitados}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->existencia_pz}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->status}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->fecha}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->descripcion}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->pedir}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->maximos}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->marca}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->proveedor}}</td>
+                        <td class="contenido_tabla_head_column">{{$art->subcategoria}}</td>
+                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                    </tr>
+                @endforeach
+           </tbody>
+        </table>
+       </div>
+    
   </div>
   </div>
 
@@ -226,5 +214,91 @@
         </div>
     
 </footer>
+
+{{-- /////////////////////////// M O D A L E S /////////////////////////////// --}}
+<!-- Modal Categorias-->
+<div class="modal fade" id="modal__categorias" tabindex="-1" aria-labelledby="modal__categoriasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__categoriasLabel">Añadir una Categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('categoria.insertar')}}" method="post" class="form__funcion">
+                @csrf
+                <div class="form-group">
+                    <label for="nombre">Nombre de la categoria</label>
+                    <span>Nombre de la Categoria</span>
+                    <input class="form-control" type="text" name="nombre" placeholder="Escriba un nombre de categoria">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" value="Crear">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Subcategorias-->
+<div class="modal fade" id="modal__subcategorias" tabindex="-1" aria-labelledby="modal__subcategoriasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__subcategoriasLabel">Añadir una Subcategoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('subcategoria.insertar')}}" method="post" class="form__funcion">
+                @csrf
+
+                <label for="">Nombre subcategoria</label>
+           
+            <label for="">¿A que categoria pertenece?</label>
+            
+
+                <div class="form-group">
+                    <label for="nombre">Nombre de la categoria</label>
+                    <span>Nombre de la Categoria</span>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre de subcategoria">
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre de la categoria</label>
+                    <span>Nombre de la Categoria</span>
+                    <select  class="form-control" name="categoria" id="">
+                        @foreach ($categorias as $cat)
+                            <option value="{{$cat->pk_categoria}}">{{$cat->nombre_cat}}</option>
+                        @endforeach
+                        <option value="" selected>Selecciona una categoria</option>
+                    </select>
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" value="Crear">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 </html>
