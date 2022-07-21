@@ -13,4 +13,8 @@ class categoriaController extends Controller
         $Categoria->save();
         return redirect()->route('bodega.mostrar');
     }
+    public function eliminar(Categoria $pk_categoria){
+        $pk_categoria->delete();
+        return redirect()->route('bodega.mostrar');
+    }
 }

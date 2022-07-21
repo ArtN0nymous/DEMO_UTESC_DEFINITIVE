@@ -15,4 +15,8 @@ class subcategoriaController extends Controller
         $sub->save();
         return redirect()->route('bodega.mostrar');
     }
+    public function eliminar(Subcategoria $pk_subcategoria){
+        $pk_subcategoria->delete();
+        return redirect()->route('bodega.mostrar');
+    }
 }

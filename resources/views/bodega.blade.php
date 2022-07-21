@@ -31,7 +31,13 @@
                 @foreach ($categorias as $cat)
                     <tr>
                         <td class='contenido_tabla_head_colum'>{{$cat->nombre_cat}}</td>
-                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                        <td class='contenido_tabla_head_colum'> 
+                            <form action="{{route('categoria.eliminar',$cat->pk_categoria)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar">
+                            </form>    
+                        <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
@@ -53,7 +59,13 @@
                     <tr>
                         <td class='contenido_tabla_head_colum'>{{$sub->nombre_Sub}}</td>
                         <td class='contenido_tabla_head_colum'>{{$sub->categoria}}</td>
-                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                        <td class='contenido_tabla_head_colum'>
+                            <form action="{{route('subcategoria.eliminar',$sub->pk_subcategoria)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar">
+                            </form>  
+                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>

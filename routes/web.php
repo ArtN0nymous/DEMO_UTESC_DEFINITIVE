@@ -33,6 +33,8 @@ Route::get('/bodega',[bodegaController::class,'mostrar'])->name('bodega.mostrar'
 Route::post('/categoria/guardar',[categoriaController::class,'insertar'])->name('categoria.insertar');
 Route::post('/sucategoria/guardar', [subcategoriaController::class,'insertar'])->name('subcategoria.insertar');
 Route::post('/proveedor/guardar', [proveedorController::class,'guardar'])->name('proveedor.insertar');
+Route::delete('/categoria/eliminar/{pk_categoria}',[categoriaController::class,'eliminar'])->name('categoria.eliminar');
+Route::delete('/subcategoria/eliminar/{pk_subcategoria}',[subcategoriaController::class,'eliminar'])->name('subcategoria.eliminar');
 Route::post('/marca/guardar',[marcaController::class,'insertar'])->name('marca.insertar');
 Route::post('/articulo/guardar',[articuloController::class,'insertar'])->name('articulo.insertar');
 Route::middleware([
