@@ -73,17 +73,8 @@
        </div>
       
        <div  class="contenedor__funcion">
-        <label for="" class="titulo__funcion">Proveedores</label>
-        <form action="{{route('proveedor.insertar')}}" method="post">
-            @csrf
-            <label for="">Nombre</label>
-            <input type="text" name="nombre">
-            <label for="">RFC</label>
-            <input type="text" name="rfc">
-            <label for="">Direccion</label>
-            <input type="text" name="direccion">
-            <input type="submit" value="guardar">
-        </form>
+        <button type="button" class="btn btn-primary boton__funcion"  data-toggle="modal" data-target="#modal__proveedores">Proveedores  <i class="bi bi-plus-lg" > </i></button>
+       
         <table class='contenido_tabla'>
             <thead class='contenido_tabla_head'>
                 <tr>
@@ -109,13 +100,8 @@
        </div>
        
        <div class="contenedor__funcion">
-        <label for="" class="titulo__funcion">Marcas</label>
-        <form action="{{route('marca.insertar')}}" method="post">
-            @csrf
-            <label for="">Nombre</label>
-            <input type="text" name="nombre">
-            <input type="submit" value="guardar">
-        </form>
+        <button type="button" class="btn btn-primary boton__funcion"  data-toggle="modal" data-target="#modal__marcas">Marcas  <i class="bi bi-plus-lg" > </i></button>
+    
         <table class='contenido_tabla'>
             <thead class='contenido_tabla_head'>
                 <tr>
@@ -135,37 +121,8 @@
        </div>
      
        <div class="contenedor__funcion">
-        <label for="" class="titulo__funcion">Articulos</label>
-        <form action="{{route('articulo.insertar')}}" method="post">
-            @csrf
-            <label for="">Nombre</label>
-            <input type="text" name="nombre">
-            <label for="">Cantidad</label>
-            <input type="number" name="cantidad">
-            <label for="">Descripcion</label>
-            <input type="text" name="descripcion">
-            <label for="">Maximos</label>
-            <input type="number" name="maximos">
-            <label for="">Marca</label>
-            <select name="marca" id="">
-                @foreach ($marcas as $marca)
-                    <option value="{{$marca->pk_marca}}">{{$marca->marca_n}}</option>
-                @endforeach
-            </select>
-            <label for="">Proveedor</label>
-            <select name="proveedor" id="">
-                @foreach ($proveedores as $proveedor)
-                    <option value="{{$proveedor->pk_proveedor}}">{{$proveedor->nombre_p}}</option>
-                @endforeach
-            </select>
-            <label for="">Subcategoria</label>
-            <select name="subcategoria" id="">
-                @foreach ($subcategorias as $subcategoria)
-                    <option value="{{$subcategoria->pk_subcategoria}}">{{$subcategoria->nombre_Sub}}</option>
-                @endforeach
-            </select>
-            <input type="submit" value="guardar"/>
-        </form>
+        <button type="button" class="btn btn-primary boton__funcion"  data-toggle="modal" data-target="#modal__articulo">Articulos  <i class="bi bi-plus-lg" > </i></button>
+       
         <table class='contenido_tabla'>
             <thead class='contenido_tabla_head'>
                 <tr>
@@ -308,6 +265,168 @@
     </div>
   </div>
 
+
+    <!-- Modal Proveedores-->
+<div class="modal fade" id="modal__proveedores" tabindex="-1" aria-labelledby="modal__proveedoresLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__proveedoresLabel">Añadir un proveedor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('proveedor.insertar')}}" method="post" class="form__funcion">
+                
+                @csrf
+                <div class="form-group">
+                    <label for="nombre">Nombre del proveedor</label>
+                    <span>Nombre del proveedor</span>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre del proveedor">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">RFC</label>
+                    <span>RFC</span>
+                    <input type="text" name="rfc"  class="form-control" placeholder="Escriba el RFC del proveedor">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Direccion</label>
+                    <span>Direccion</span>
+                    <input type="text" name="direccion"  class="form-control" placeholder="Escriba la direccion del proveedor">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" value="Crear">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal Marcas-->
+<div class="modal fade" id="modal__marcas" tabindex="-1" aria-labelledby="modal__marcasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__marcasLabel">Añadir una Marca</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('marca.insertar')}}" method="post" class="form__funcion">
+                
+                @csrf
+                <div class="form-group">
+                    <label for="nombre">Nombre de la marca</label>
+                    <span>Nombre de la marca</span>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre de la marca">
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" value="Crear">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal Articulos-->
+<div class="modal fade" id="modal__articulo" tabindex="-1" aria-labelledby="modal__articuloLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__articuloLabel">Añadir un Articulo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('articulo.insertar')}}" method="post" class="form__funcion">
+                
+                @csrf
+                <div class="form-group">
+                    <label for="nombre">Nombre del Articulo</label>
+                    <span>Nombre del Articulo</span>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre del Articulo">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Cantidad</label>
+                    <span>Cantidad</span>
+                    <input type="text" name="cantidad"  class="form-control" placeholder="Escriba la cantidad del Articulo">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Descripcion</label>
+                    <span>Descripcion</span>
+                    <input type="text" name="descripcion"  class="form-control" placeholder="Escriba la descripcion del articulo">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Maximos</label>
+                    <span>Maximos</span>
+                    <input type="text" name="maximos"  class="form-control" placeholder="Escriba lo maximo de articulos">
+                </div>
+
+                
+                <div class="form-group">
+                    <select name="marca" id=""  class="form-control">
+                        @foreach ($marcas as $marca)
+                            <option value="{{$marca->pk_marca}}">{{$marca->marca_n}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                <select name="proveedor" id=""  class="form-control">
+                    @foreach ($proveedores as $proveedor)
+                        <option value="{{$proveedor->pk_proveedor}}">{{$proveedor->nombre_p}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <select name="subcategoria" id=""  class="form-control">
+                    @foreach ($subcategorias as $subcategoria)
+                        <option value="{{$subcategoria->pk_subcategoria}}">{{$subcategoria->nombre_Sub}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
+
+
+
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" value="Crear">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ 
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
