@@ -35,6 +35,9 @@ Route::post('/sucategoria/guardar', [subcategoriaController::class,'insertar'])-
 Route::post('/proveedor/guardar', [proveedorController::class,'guardar'])->name('proveedor.insertar');
 Route::delete('/categoria/eliminar/{pk_categoria}',[categoriaController::class,'eliminar'])->name('categoria.eliminar');
 Route::delete('/subcategoria/eliminar/{pk_subcategoria}',[subcategoriaController::class,'eliminar'])->name('subcategoria.eliminar');
+Route::delete('/proveedor/eliminar/{pk_proveedor}',[proveedorController::class,'eliminar'])->name('proveedor.eliminar');
+Route::delete('/marca/eliminar/{pk_marca}',[marcaController::class,'eliminar'])->name('marca.eliminar');
+Route::delete('/articulo/eliminar/{pk_articulo}',[articuloController::class,'eliminar'])->name('articulo.eliminar');
 Route::post('/marca/guardar',[marcaController::class,'insertar'])->name('marca.insertar');
 Route::post('/articulo/guardar',[articuloController::class,'insertar'])->name('articulo.insertar');
 Route::middleware([

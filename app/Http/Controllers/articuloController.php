@@ -26,4 +26,8 @@ class articuloController extends Controller
         $articulo->save();
         return redirect()->route('bodega.mostrar');
     }
+    public function eliminar(Articulo $pk_articulo){
+        $pk_articulo->delete();
+        return redirect()->route('bodega.mostrar');
+    }
 }

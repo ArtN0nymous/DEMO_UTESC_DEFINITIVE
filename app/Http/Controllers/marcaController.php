@@ -16,4 +16,8 @@ class marcaController extends Controller
     public function mostrar(){
         return 'mostrar';
     }
+    public function eliminar(Marca $pk_marca){
+        $pk_marca->delete();
+        return redirect()->route('bodega.mostrar');
+    }
 }

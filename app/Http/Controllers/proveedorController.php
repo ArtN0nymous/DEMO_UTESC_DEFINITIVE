@@ -17,4 +17,8 @@ class proveedorController extends Controller
         $prov->save();
         return redirect()->route('bodega.mostrar');
     }
+    public function eliminar(Proveedor $pk_proveedor){
+        $pk_proveedor->delete();
+        return redirect()->route('bodega.mostrar');
+    }
 }
