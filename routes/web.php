@@ -45,6 +45,10 @@ Route::delete('/marca/eliminar/{pk_marca}',[marcaController::class,'eliminar'])-
 Route::delete('/articulo/eliminar/{pk_articulo}',[articuloController::class,'eliminar'])->name('articulo.eliminar');
 
 Route::put('/categoria/actualizar/{pk_categoria}',[categoriaController::class,'actualizar'])->name('categoria.actualizar');
+Route::put('/subcategoria/actualizar/{pk_subcategoria}',[subcategoriaController::class,'actualizar'])->name('subcategoria.actualizar');
+Route::put('/proveedor/actualizar/{pk_proveedor}',[proveedorController::class,'actualizar'])->name('proveedor.actualizar');
+Route::put('/marca/actualizar/{pk_marca}',[marcaController::class,'actualizar'])->name('marca.actualizar');
+Route::put('/articulo/actualizar/{pk_articulo}',[articuloController::class,'actualizar'])->name('articulo.actualizar');
 
 Route::get('/getCategoria/{pk_categoria}',[ajaxController::class,'categoria'])->name('categoria.editar');
 

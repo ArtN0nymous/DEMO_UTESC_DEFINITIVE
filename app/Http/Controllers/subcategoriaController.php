@@ -19,4 +19,11 @@ class subcategoriaController extends Controller
         $pk_subcategoria->delete();
         return redirect()->route('bodega.mostrar');
     }
+    public function actualizar(Subcategoria $pk_subcategoria,Request $req)
+    {
+        $pk_subcategoria->nombre_cat=$req->nombre;
+        $pk_subcategoria->fk_categoria=$req->fk_categoria;
+        $pk_subcategoria->save();
+        return redirect()->route('bodega.mostrar');
+    }
 }

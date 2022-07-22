@@ -21,4 +21,12 @@ class proveedorController extends Controller
         $pk_proveedor->delete();
         return redirect()->route('bodega.mostrar');
     }
+    public function actualizar(Proveedor $pk_proveedor,Request $req)
+    {
+        $pk_proveedor->nombre_cat=$req->nombre;
+        $pk_proveedor->RFC=$req->RFC;
+        $pk_proveedor->direccion=$req->direccion;
+        $pk_proveedor->save();
+        return redirect()->route('bodega.mostrar');
+    }
 }

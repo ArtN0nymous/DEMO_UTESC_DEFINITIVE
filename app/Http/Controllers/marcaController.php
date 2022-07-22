@@ -13,11 +13,14 @@ class marcaController extends Controller
         $marca->save();
         return redirect()->route('bodega.mostrar');
     }
-    public function mostrar(){
-        return 'mostrar';
-    }
     public function eliminar(Marca $pk_marca){
         $pk_marca->delete();
+        return redirect()->route('bodega.mostrar');
+    }
+    public function actualizar(Marca $pk_marca,Request $req)
+    {
+        $pk_marca->nombre_cat=$req->nombre;
+        $pk_marca->save();
         return redirect()->route('bodega.mostrar');
     }
 }
