@@ -37,11 +37,21 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form>    
-                        <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                        <a class= 'contenido_tabla_head_colum_el' onclick="getCategoria({{$cat->pk_categoria}})">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
+        <div id=editar_cat style="font-size:3rem">
+            <form id="categoria_actualizar" method="post">
+                @csrf
+                @method('put')
+                <label>Nombre categoria:</label>
+                <input type="hidden" id="pk_categoria" value='' disabled>
+                <input type="text" id="categoria_nombre" value="" name='nombre'>
+                <input type="button" value="actualizar" onclick="updateCategoria()">
+            </form>   
+        </div>
     </div>
    
        <div  class="contenedor__funcion">
@@ -92,7 +102,13 @@
                         <td class='contenido_tabla_head_colum'>{{$prov->RFC}}</td>
                         <td class='contenido_tabla_head_colum'>{{$prov->direccion}}</td>
                         <td class='contenido_tabla_head_colum'>{{$prov->estatus}}</td>
-                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                        <td class='contenido_tabla_head_colum'>
+                            <form action="{{route('proveedor.eliminar',$prov->pk_proveedor)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar">
+                            </form> 
+                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
@@ -113,7 +129,13 @@
                 @foreach ($marcas as $marca)
                     <tr>
                         <td class='contenido_tabla_head_colum'>{{$marca->marca_n}}</td>
-                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                        <td class='contenido_tabla_head_colum'>
+                            <form action="{{route('marca.eliminar',$marca->pk_marca)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar">
+                            </form> 
+                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
@@ -154,7 +176,13 @@
                         <td class="contenido_tabla_head_column">{{$art->marca}}</td>
                         <td class="contenido_tabla_head_column">{{$art->proveedor}}</td>
                         <td class="contenido_tabla_head_column">{{$art->subcategoria}}</td>
-                        <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                        <td class='contenido_tabla_head_colum'>
+                            <form action="{{route('articulo.eliminar',$art->pk_articulo)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar">
+                            </form> 
+                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
@@ -429,7 +457,25 @@
  
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
+<script>
+    function getCategoria(pk_categoria){
+        $.ajax({
+            type:'GET',
+            url:'/getCategoria/'+pk_categoria,
+            success:function(data) {
+                $("#categoria_nombre").val(data.categoria.nombre_cat);
+                $("#pk_categoria").val(data.categoria.pk_categoria);
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function updateCategoria(){
+        let pk_categoria = document.getElementById('pk_categoria').value;
+        $("#categoria_actualizar").attr('action','/categoria/actualizar/'+pk_categoria);
+        $("#categoria_actualizar").submit();
+    }
+</script>
 </html>

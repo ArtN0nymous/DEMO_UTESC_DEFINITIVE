@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ajaxController;
 use App\Http\Controllers\articuloController;
 use App\Http\Controllers\bodegaController;
 use App\Http\Controllers\categoriaController;
@@ -30,16 +31,24 @@ Route::get('/index', function () {
     return view('index');
 });
 Route::get('/bodega',[bodegaController::class,'mostrar'])->name('bodega.mostrar');
+
 Route::post('/categoria/guardar',[categoriaController::class,'insertar'])->name('categoria.insertar');
 Route::post('/sucategoria/guardar', [subcategoriaController::class,'insertar'])->name('subcategoria.insertar');
 Route::post('/proveedor/guardar', [proveedorController::class,'guardar'])->name('proveedor.insertar');
+Route::post('/marca/guardar',[marcaController::class,'insertar'])->name('marca.insertar');
+Route::post('/articulo/guardar',[articuloController::class,'insertar'])->name('articulo.insertar');
+
 Route::delete('/categoria/eliminar/{pk_categoria}',[categoriaController::class,'eliminar'])->name('categoria.eliminar');
 Route::delete('/subcategoria/eliminar/{pk_subcategoria}',[subcategoriaController::class,'eliminar'])->name('subcategoria.eliminar');
 Route::delete('/proveedor/eliminar/{pk_proveedor}',[proveedorController::class,'eliminar'])->name('proveedor.eliminar');
 Route::delete('/marca/eliminar/{pk_marca}',[marcaController::class,'eliminar'])->name('marca.eliminar');
 Route::delete('/articulo/eliminar/{pk_articulo}',[articuloController::class,'eliminar'])->name('articulo.eliminar');
-Route::post('/marca/guardar',[marcaController::class,'insertar'])->name('marca.insertar');
-Route::post('/articulo/guardar',[articuloController::class,'insertar'])->name('articulo.insertar');
+
+Route::put('/categoria/actualizar/{pk_categoria}',[categoriaController::class,'actualizar'])->name('categoria.actualizar');
+
+Route::get('/getCategoria/{pk_categoria}',[ajaxController::class,'categoria'])->name('categoria.editar');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

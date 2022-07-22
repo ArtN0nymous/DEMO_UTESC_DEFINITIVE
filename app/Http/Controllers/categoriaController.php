@@ -17,4 +17,10 @@ class categoriaController extends Controller
         $pk_categoria->delete();
         return redirect()->route('bodega.mostrar');
     }
+    public function actualizar(Categoria $pk_categoria,Request $req)
+    {
+        $pk_categoria->nombre_cat=$req->nombre;
+        $pk_categoria->save();
+        return redirect()->route('bodega.mostrar');
+    }
 }
