@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
+use App\Models\Proveedor;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 class ajaxController extends Controller
@@ -19,5 +20,9 @@ class ajaxController extends Controller
     {
         $categorias = Categoria::all();
         return response()->json(array('categorias'=>$categorias),200);
+    }
+    public function proveedor(Proveedor $pk_proveedor)
+    {
+        return response()->json(array('proveedor'=>$pk_proveedor),200);
     }
 }

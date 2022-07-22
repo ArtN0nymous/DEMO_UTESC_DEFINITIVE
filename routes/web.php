@@ -53,6 +53,7 @@ Route::put('/articulo/actualizar/{pk_articulo}',[articuloController::class,'actu
 Route::get('/getCategoria/{pk_categoria}',[ajaxController::class,'categoria'])->name('categoria.editar');
 Route::get('/getSubcategoria/{pk_subcategoria}',[ajaxController::class,'subcategoria'])->name('subcategoria.editar');
 Route::get('/getCategorias',[ajaxController::class,'categorias'])->name('subcategoria_categorias.editar');
+Route::get('/getProveedor/{pk_proveedor}',[ajaxController::class,'proveedor'])->name('proveedor.editar');
 
 Route::middleware([
     'auth:sanctum',

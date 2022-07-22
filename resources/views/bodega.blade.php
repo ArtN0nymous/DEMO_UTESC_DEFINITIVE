@@ -121,11 +121,25 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getProveedor({{$prov->pk_proveedor}})">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
+        <div style="font-size: 3rem" id="edit_prov">
+            <form id="proveedor_actualizar" method="post">
+                @csrf
+                @method('put')
+                <label>Nombre proveedor:</label>
+                <input type="hidden" id="pk_proveedor" value='' disabled>
+                <input type="text" id="proveedor_nombre" value="" name='nombre'>
+                <label>RFC</label>
+                <input type="text" name="RFC" id='proveedor_rfc'>
+                <label>Dirección</label>
+                <input type="text" name="direccion" id="proveedor_direccion">
+                <input type="button" value="actualizar" onclick="updateProveedor()">
+            </form>
+        </div>  
        </div>
        
        <div class="contenedor__funcion">
@@ -526,6 +540,24 @@
         let pk_subcategoria = document.getElementById('pk_subcategoria').value;
         $("#subcategoria_actualizar").attr('action','/subcategoria/actualizar/'+pk_subcategoria);
         $("#subcategoria_actualizar").submit();
+    }
+    function getProveedor(pk_proveedor){
+        $.ajax({
+            type:'GET',
+            url:'/getProveedor/'+pk_proveedor,
+            success:function(data){
+                $("#pk_proveedor").val(data.proveedor.pk_proveedor);
+                $("#proveedor_rfc").val(data.proveedor.RFC);
+                $("#proveedor_direccion").val(data.proveedor.direccion);
+                $("#proveedor_nombre").val(data.proveedor.nombre_p);
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function updateProveedor(){
+        let pk_proveedor= document.getElementById('pk_proveedor').value;
+        $("#proveedor_actualizar").attr('action','/proveedor/actualizar/'+pk_proveedor);
+        $("#proveedor_actualizar").submit();
     }
 </script>
 </html>

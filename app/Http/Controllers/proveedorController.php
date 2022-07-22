@@ -23,7 +23,7 @@ class proveedorController extends Controller
     }
     public function actualizar(Proveedor $pk_proveedor,Request $req)
     {
-        $pk_proveedor->nombre_cat=$req->nombre;
+        $pk_proveedor->nombre_p=$req->nombre;
         $pk_proveedor->RFC=$req->RFC;
         $pk_proveedor->direccion=$req->direccion;
         $pk_proveedor->save();
