@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Proveedor;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
@@ -24,5 +25,9 @@ class ajaxController extends Controller
     public function proveedor(Proveedor $pk_proveedor)
     {
         return response()->json(array('proveedor'=>$pk_proveedor),200);
+    }
+    public function marca(Marca $pk_marca)
+    {
+        return response()->json(array('marca'=>$pk_marca),200);
     }
 }

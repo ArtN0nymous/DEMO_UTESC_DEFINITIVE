@@ -9,5 +9,5 @@ class Marca extends Model
 {
     use HasFactory;
     protected $table='marcas';
-    protected $primaryKey='pk_marcas';
+    protected $primaryKey='pk_marca';
 }

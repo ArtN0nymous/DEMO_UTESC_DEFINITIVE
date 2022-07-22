@@ -19,7 +19,7 @@ class marcaController extends Controller
     }
     public function actualizar(Marca $pk_marca,Request $req)
     {
-        $pk_marca->nombre_cat=$req->nombre;
+        $pk_marca->marca_n=$req->nombre;
         $pk_marca->save();
         return redirect()->route('bodega.mostrar');
     }

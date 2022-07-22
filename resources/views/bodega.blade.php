@@ -162,11 +162,21 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getMarca({{$marca->pk_marca}})">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
+        <div id="edit_marca" style="font-size:3rem">
+            <form id="marca_actualizar" method="post">
+                @csrf
+                @method('put')
+                <label>Nombre Marca:</label>
+                <input type="hidden" id="pk_marca" value='' disabled>
+                <input type="text" id="marca_nombre" value="" name='nombre'>
+                <input type="button" value="actualizar" onclick="updateMarca()">
+            </form>   
+        </div>
        </div>
      
        <div class="contenedor__funcion">
@@ -558,6 +568,22 @@
         let pk_proveedor= document.getElementById('pk_proveedor').value;
         $("#proveedor_actualizar").attr('action','/proveedor/actualizar/'+pk_proveedor);
         $("#proveedor_actualizar").submit();
+    }
+    function getMarca(pk_marca){
+        $.ajax({
+            type:'GET',
+            url:'/getMarca/'+pk_marca,
+            success:function(data){
+                $("#pk_marca").val(data.marca.pk_marca);
+                $("#marca_nombre").val(data.marca.marca_n);
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function updateMarca(){
+        let pk_marca= document.getElementById('pk_marca').value;
+        $("#marca_actualizar").attr('action','/marca/actualizar/'+pk_marca);
+        $("#marca_actualizar").submit();
     }
 </script>
 </html>
