@@ -49,7 +49,7 @@
                 <label>Nombre categoria:</label>
                 <input type="hidden" id="pk_categoria" value='' disabled>
                 <input type="text" id="categoria_nombre" value="" name='nombre'>
-                <input type="button" value="actualizar" onclick="updateCategoria()">
+                <input type="button" value="actualizar" onclick="update('categoria')">
             </form>   
         </div>
     </div>
@@ -90,7 +90,7 @@
                 <select name="fk_categoria" id="edit_categoria_sub">
 
                 </select>
-                <input type="button" value="actualizar" onclick="updateSubcategoria()">
+                <input type="button" value="actualizar" onclick="update('subcategoria')">
             </form>   
         </div>
        </div>
@@ -137,7 +137,7 @@
                 <input type="text" name="RFC" id='proveedor_rfc'>
                 <label>Dirección</label>
                 <input type="text" name="direccion" id="proveedor_direccion">
-                <input type="button" value="actualizar" onclick="updateProveedor()">
+                <input type="button" value="actualizar" onclick="update('proveedor')">
             </form>
         </div>  
        </div>
@@ -174,7 +174,7 @@
                 <label>Nombre Marca:</label>
                 <input type="hidden" id="pk_marca" value='' disabled>
                 <input type="text" id="marca_nombre" value="" name='nombre'>
-                <input type="button" value="actualizar" onclick="updateMarca()">
+                <input type="button" value="actualizar" onclick="update('marca')">
             </form>   
         </div>
        </div>
@@ -219,13 +219,40 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getArticulo({{$art->pk_articulo}})">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
+        <div id="edit_marca" style="font-size:3rem">
+            <form id="articulo_actualizar" method="post">
+                @csrf
+                @method('put')
+                <label>Nombre Marca:</label>
+                <input type="hidden" id="pk_articulo" value='' disabled>
+                <input type="text" id="articulo_nombre" value="" name='nombre'>
+                <label>Cantidad:</label>
+                <input type="text" id="articulo_cantidad" name="cantidad">
+                <label>Maximos:</label>
+                <input type="text" id="articulo_maximos" name="maximos"><br>
+                <label>Descripción:</label>
+                <input type="text" id="articulo_descripcion" name="descripcion">
+                <label>Marca:</label>
+                <select name="fk_marca" id="articulo_marcas">
+
+                </select>
+                <label>Proveedor:</label>
+                <select name="fk_proveedor" id="articulo_proveedores">
+
+                </select>
+                <label>Subcategoria:</label>
+                <select name="fk_subcategoria" id="articulo_subcategorias">
+
+                </select>
+                <input type="button" value="actualizar" onclick="update('articulo')">
+            </form>   
+        </div>
        </div>
-    
   </div>
   </div>
 
@@ -509,11 +536,6 @@
             error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
         });
     }
-    function updateCategoria(){
-        let pk_categoria = document.getElementById('pk_categoria').value;
-        $("#categoria_actualizar").attr('action','/categoria/actualizar/'+pk_categoria);
-        $("#categoria_actualizar").submit();
-    }
     function getSubcategoria(pk_subcategoria){
         $.ajax({
             type:'GET',
@@ -521,12 +543,12 @@
             success:function(data){
                 $("#pk_subcategoria").val(data.subcategoria.pk_subcategoria);
                 $("#subcategoria_nombre").val(data.subcategoria.nombre_Sub);
-                getCategorias(data.subcategoria.fk_categoria);
+                getCategorias(data.subcategoria.fk_categoria,'edit_categoria_sub');
             },
             error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
         });
     }
-    function getCategorias(pk_categoria){
+    function getCategorias(pk_categoria,element){
         $.ajax({
             type:'GET',
             url:'/getCategorias',
@@ -540,16 +562,11 @@
                         options+=`<option value="${categorias[i].pk_categoria}">${categorias[i].nombre_cat}</option>`;
                     }
                 }
-                var select = document.getElementById('edit_categoria_sub');
+                var select = document.getElementById(element);
                 select.innerHTML=options;
             },
             error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
         });
-    }
-    function updateSubcategoria(){
-        let pk_subcategoria = document.getElementById('pk_subcategoria').value;
-        $("#subcategoria_actualizar").attr('action','/subcategoria/actualizar/'+pk_subcategoria);
-        $("#subcategoria_actualizar").submit();
     }
     function getProveedor(pk_proveedor){
         $.ajax({
@@ -564,11 +581,6 @@
             error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
         });
     }
-    function updateProveedor(){
-        let pk_proveedor= document.getElementById('pk_proveedor').value;
-        $("#proveedor_actualizar").attr('action','/proveedor/actualizar/'+pk_proveedor);
-        $("#proveedor_actualizar").submit();
-    }
     function getMarca(pk_marca){
         $.ajax({
             type:'GET',
@@ -580,10 +592,94 @@
             error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
         });
     }
-    function updateMarca(){
-        let pk_marca= document.getElementById('pk_marca').value;
-        $("#marca_actualizar").attr('action','/marca/actualizar/'+pk_marca);
-        $("#marca_actualizar").submit();
+    function getArticulo(pk_articulo){
+        $.ajax({
+            type:'GET',
+            url:'/getArticulo/'+pk_articulo,
+            success:function(data){
+                $("#pk_articulo").val(data.articulo.pk_articulo);
+                $("#articulo_nombre").val(data.articulo.nombre_art);
+                $("#articulo_cantidad").val(data.articulo.existencia_pz);
+                $("#articulo_maximos").val(data.articulo.maximos);
+                $("#articulo_descripcion").val(data.articulo.descripcion);
+                let fk_marca = data.articulo.fk_marca;
+                let fk_proveedor=data.articulo.fk_proveedor;
+                let fk_subcategoria = data.articulo.fk_subcategoria;
+                getMarcas(fk_marca,'articulo_marcas');
+                getProveedores(fk_proveedor,'articulo_proveedores');
+                getSubcategorias(fk_subcategoria,'articulo_subcategorias');
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function update(element){
+        let pk=$("#pk_"+element).val();
+        if(pk!=''&&pk!=undefined){
+            $("#"+element+"_actualizar").attr('action','/'+element+'/actualizar/'+pk);
+            $("#"+element+"_actualizar").submit();
+        }else{
+            console.log('PK VACÍO:'+pk);
+        }
+    }
+    function getMarcas(pk_marca,element){
+        $.ajax({
+            type:'GET',
+            url:'/getMarcas',
+            success:function(data){
+                let marcas = data.marcas;
+                let options ='';
+                for(var i in marcas){
+                    if(pk_marca==marcas[i].pk_marca){
+                        options+=`<option value="${marcas[i].pk_marca}" selected>${marcas[i].marca_n}</option>`;
+                    }else{
+                        options+=`<option value="${marcas[i].pk_marca}">${marcas[i].marca_n}</option>`;
+                    }
+                }
+                var select = document.getElementById(element);
+                select.innerHTML=options;
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function getProveedores(pk_proveedor,element){
+        $.ajax({
+            type:'GET',
+            url:'/getProveedores',
+            success:function(data){
+                let proveedores = data.proveedores;
+                let options ='';
+                for(var i in proveedores){
+                    if(pk_proveedor==proveedores[i].pk_proveedor){
+                        options+=`<option value="${proveedores[i].pk_proveedor}" selected>${proveedores[i].nombre_p}</option>`;
+                    }else{
+                        options+=`<option value="${proveedores[i].pk_proveedor}">${proveedores[i].nombre_p}</option>`;
+                    }
+                }
+                var select = document.getElementById(element);
+                select.innerHTML=options;
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function getSubcategorias(pk_subcategoria,element){
+        $.ajax({
+            type:'GET',
+            url:'/getSubcategorias',
+            success:function(data){
+                let subcategorias = data.subcategorias;
+                let options ='';
+                for(var i in subcategorias){
+                    if(pk_subcategoria==subcategorias[i].pk_subcategoria){
+                        options+=`<option value="${subcategorias[i].pk_subcategoria}" selected>${subcategorias[i].nombre_Sub}</option>`;
+                    }else{
+                        options+=`<option value="${subcategorias[i].pk_subcategoria}">${subcategorias[i].nombre_Sub}</option>`;
+                    }
+                }
+                var select = document.getElementById(element);
+                select.innerHTML=options;
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
     }
 </script>
 </html>

@@ -52,9 +52,13 @@ Route::put('/articulo/actualizar/{pk_articulo}',[articuloController::class,'actu
 
 Route::get('/getCategoria/{pk_categoria}',[ajaxController::class,'categoria'])->name('categoria.editar');
 Route::get('/getSubcategoria/{pk_subcategoria}',[ajaxController::class,'subcategoria'])->name('subcategoria.editar');
-Route::get('/getCategorias',[ajaxController::class,'categorias'])->name('subcategoria_categorias.editar');
 Route::get('/getProveedor/{pk_proveedor}',[ajaxController::class,'proveedor'])->name('proveedor.editar');
 Route::get('/getMarca/{pk_marca}',[ajaxController::class,'marca'])->name('marca.editar');
+Route::get('/getArticulo/{pk_articulo}',[ajaxController::class,'articulo'])->name('articulo.editar');
+Route::get('/getCategorias',[ajaxController::class,'categorias'])->name('subcategoria_categorias.editar');
+Route::get('/getSubcategorias',[ajaxController::class,'subcategorias'])->name('articulo_subcategorias.editar');
+Route::get('/getProveedores',[ajaxController::class,'proveedores'])->name('articulo_proveedores.editar');
+Route::get('/getMarcas',[ajaxController::class,'marcas'])->name('articulo_marcas.editar');
 
 Route::middleware([
     'auth:sanctum',
