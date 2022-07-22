@@ -42,7 +42,7 @@
                 @endforeach
            </tbody>
         </table>
-        <div id=editar_cat style="font-size:3rem">
+        <div id="editar_cat" style="font-size:3rem">
             <form id="categoria_actualizar" method="post">
                 @csrf
                 @method('put')
@@ -75,11 +75,24 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form>  
-                            <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getSubcategoria({{$sub->pk_subcategoria}})">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
+        <div id="edit_sub" style="font-size:3rem">
+            <form id="subcategoria_actualizar" method="post">
+                @csrf
+                @method('put')
+                <label>Nombre Subcategoria:</label>
+                <input type="hidden" id="pk_subcategoria" value='' disabled>
+                <input type="text" id="subcategoria_nombre" value="" name='nombre'>
+                <select name="fk_categoria" id="edit_categoria_sub">
+
+                </select>
+                <input type="button" value="actualizar" onclick="updateSubcategoria()">
+            </form>   
+        </div>
        </div>
       
        <div  class="contenedor__funcion">
@@ -476,6 +489,43 @@
         let pk_categoria = document.getElementById('pk_categoria').value;
         $("#categoria_actualizar").attr('action','/categoria/actualizar/'+pk_categoria);
         $("#categoria_actualizar").submit();
+    }
+    function getSubcategoria(pk_subcategoria){
+        $.ajax({
+            type:'GET',
+            url:'/getSubcategoria/'+pk_subcategoria,
+            success:function(data){
+                $("#pk_subcategoria").val(data.subcategoria.pk_subcategoria);
+                $("#subcategoria_nombre").val(data.subcategoria.nombre_Sub);
+                getCategorias(data.subcategoria.fk_categoria);
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function getCategorias(pk_categoria){
+        $.ajax({
+            type:'GET',
+            url:'/getCategorias',
+            success:function(data){
+                let categorias = data.categorias;
+                let options ='';
+                for(var i in categorias){
+                    if(pk_categoria==categorias[i].pk_categoria){
+                        options+=`<option value="${categorias[i].pk_categoria}" selected>${categorias[i].nombre_cat}</option>`;
+                    }else{
+                        options+=`<option value="${categorias[i].pk_categoria}">${categorias[i].nombre_cat}</option>`;
+                    }
+                }
+                var select = document.getElementById('edit_categoria_sub');
+                select.innerHTML=options;
+            },
+            error: function (xhr,ajaxOptions,thrownError){alert(xhr.responseText);}
+        });
+    }
+    function updateSubcategoria(){
+        let pk_subcategoria = document.getElementById('pk_subcategoria').value;
+        $("#subcategoria_actualizar").attr('action','/subcategoria/actualizar/'+pk_subcategoria);
+        $("#subcategoria_actualizar").submit();
     }
 </script>
 </html>

@@ -21,7 +21,8 @@ class subcategoriaController extends Controller
     }
     public function actualizar(Subcategoria $pk_subcategoria,Request $req)
     {
-        $pk_subcategoria->nombre_cat=$req->nombre;
+        print('ERROR');
+        $pk_subcategoria->nombre_Sub=$req->nombre;
         $pk_subcategoria->fk_categoria=$req->fk_categoria;
         $pk_subcategoria->save();
         return redirect()->route('bodega.mostrar');
