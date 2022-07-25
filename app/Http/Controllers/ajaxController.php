@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Proveedor;
 use App\Models\Subcategoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 class ajaxController extends Controller
 {
@@ -46,5 +47,10 @@ class ajaxController extends Controller
     public function articulo(Articulo $pk_articulo)
     {
         return response()->json(array('articulo'=>$pk_articulo),200);
+    }
+    public function usuarios(User $id)
+    {
+        $usuarios = User::all();
+        return response()->json(array('usuarios'=>$usuarios),200);
     }
 }

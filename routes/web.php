@@ -7,6 +7,7 @@ use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\marcaController;
 use App\Http\Controllers\proveedorController;
 use App\Http\Controllers\subcategoriaController;
+use App\Http\Controllers\usuariosController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -59,6 +60,9 @@ Route::get('/getCategorias',[ajaxController::class,'categorias'])->name('subcate
 Route::get('/getSubcategorias',[ajaxController::class,'subcategorias'])->name('articulo_subcategorias.editar');
 Route::get('/getProveedores',[ajaxController::class,'proveedores'])->name('articulo_proveedores.editar');
 Route::get('/getMarcas',[ajaxController::class,'marcas'])->name('articulo_marcas.editar');
+
+Route::get('/getUsers', [usuariosController::class, 'getUsers']) ->name('usuarios.getUsers');
+
 
 Route::middleware([
     'auth:sanctum',
