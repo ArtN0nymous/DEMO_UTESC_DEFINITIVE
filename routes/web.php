@@ -50,6 +50,7 @@ Route::put('/subcategoria/actualizar/{pk_subcategoria}',[subcategoriaController:
 Route::put('/proveedor/actualizar/{pk_proveedor}',[proveedorController::class,'actualizar'])->name('proveedor.actualizar');
 Route::put('/marca/actualizar/{pk_marca}',[marcaController::class,'actualizar'])->name('marca.actualizar');
 Route::put('/articulo/actualizar/{pk_articulo}',[articuloController::class,'actualizar'])->name('articulo.actualizar');
+Route::put('/usuarios/actualizar/{id}',[usuariosController::class,'actualizar'])->name('usuarios.actualizar');
 
 Route::get('/getCategoria/{pk_categoria}',[ajaxController::class,'categoria'])->name('categoria.editar');
 Route::get('/getSubcategoria/{pk_subcategoria}',[ajaxController::class,'subcategoria'])->name('subcategoria.editar');

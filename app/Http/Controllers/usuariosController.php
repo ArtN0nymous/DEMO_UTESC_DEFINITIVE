@@ -10,9 +10,14 @@ class usuariosController extends Controller
 {
     function getUsers (){
         $usuarios = User::all();
-        // print($usuarios);
-        // print($usuarios);
-        // print($usuarios);
+  
         return view('usuarios', compact('usuarios'));
+    }
+    function actualizar(User $usuario, Request $req){
+        print($req);
+        echo($req);
+        // $usuario->profType=$req->profType;
+        // $usuario->update();
+        // return redirect()->route('usuarios.getUsers');
     }
 }

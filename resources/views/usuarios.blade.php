@@ -31,27 +31,29 @@
                     <tr>
                         <td class="contenedor_tabla_head_col">{{$user->id}}</td>
                         <td class="contenedor_tabla_head_col">{{$user->name}}</td>
+                        <td class="contenedor_tabla_head_col">{{$user->email}}</td>
                         <td class="contenedor_tabla_head_col">
                             
-                                @if ($user->profType == 'n') {
+                                @if ($user->profType == 'n') 
+                                    <form action="{{route('usuarios.actualizar', $user->id)}}" method="post" id="formProfType" >
+                                        @csrf
+                                        @method('put')
+                                        <div class="switch-button">
+                                            <input onchange="changeProfType()" type="checkbox" name="profType" id="switch-label" class="switch-button__checkbox">
+                                            <label for="switch-label" class="switch-button__label"></label>
+                                        </div>
+                                    </form>
+                                    
+        
+                                @else
                                     <div class="switch-button">
-                                        <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
+                                        <input type="checkbox" onchange="changeProfType()" name="profType" id="switch-label" checked class="switch-button__checkbox">
                                         <label for="switch-label" class="switch-button__label"></label>
                                     </div>
-                                }
-                                @else{
-                                    <div class="switch-button">
-                                        <input type="checkbox" name="switch-button" id="switch-label" checked class="switch-button__checkbox">
-                                        <label for="switch-label" class="switch-button__label"></label>
-                                    </div>
-                                }
+                                
                                 @endif
                             
                             
-                        </td>
-
-                        <td class="contenedor_tabla_head_col">
-                           
                         </td>
                         <td class="contenedor_tabla_head_col"><a href="" class="contenedor_tabla_head_col_el">Eliminar</a></td>
                     </tr>
@@ -80,5 +82,12 @@
         </div>
     
 </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
+<script>
+    function changeProfType(){
+        console.log('Si llego :)')
+        $('#formProfType').submit();
+    }
+</script>
 </body>
 </html>
