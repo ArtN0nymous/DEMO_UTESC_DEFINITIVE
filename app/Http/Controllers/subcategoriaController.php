@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subcategoria;
+use Exception;
 use Illuminate\Http\Request;
 
 class subcategoriaController extends Controller
@@ -16,8 +17,13 @@ class subcategoriaController extends Controller
         return redirect()->route('bodega.mostrar');
     }
     public function eliminar(Subcategoria $pk_subcategoria){
-        $pk_subcategoria->delete();
-        return redirect()->route('bodega.mostrar');
+        $error='Error';
+        try{
+            $pk_subcategoria->delete();
+            return redirect()->route('bodega.mostrar');
+        }catch(Exception $e){
+            return redirect()->route('bodega.mostrar',compact('e'));
+        }
     }
     public function actualizar(Subcategoria $pk_subcategoria,Request $req)
     {
