@@ -46,3 +46,17 @@
     height: 20%;
     
 }
+.seleccionar{
+    width: 150px;
+    height: 20px;
+    font-size: 1rem;
+    top: 1px;
+}
+.subc{
+    width: 200px;
+    height: 20px;
+    font-size: 1rem;
+}
+.art{
+    font-size: 1rem;
+}

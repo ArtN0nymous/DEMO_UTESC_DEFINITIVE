@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class bodegaController extends Controller
 {
     public function mostrar(){
+        $error='';
         $categorias = Categoria::all();
         $subcategorias = Subcategoria::all();
         $subcategorias_t=Subcategoria::select('pk_subcategoria','nombre_Sub','categorias.nombre_cat as categoria')
@@ -30,6 +31,7 @@ class bodegaController extends Controller
         ->with(compact('subcategorias_t'))
         ->with(compact('proveedores'))
         ->with(compact('marcas'))
-        ->with(compact('articulos'));
+        ->with(compact('articulos'))
+        ->with(compact('error'));
     }
 }

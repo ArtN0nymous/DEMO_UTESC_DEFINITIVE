@@ -37,23 +37,12 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form>    
-                        <a class= 'contenido_tabla_head_colum_el' onclick="getCategoria({{$cat->pk_categoria}})">Editar</a></td>
+                        <a class= 'contenido_tabla_head_colum_el' onclick="getCategoria({{$cat->pk_categoria}})" data-toggle="modal" data-target="#modal__editar_cat">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
-        <div id="editar_cat" style="font-size:3rem">
-            <form id="categoria_actualizar" method="post">
-                @csrf
-                @method('put')
-                <label>Nombre categoria:</label>
-                <input type="hidden" id="pk_categoria" value='' disabled>
-                <input type="text" id="categoria_nombre" value="" name='nombre'>
-                <input type="button" value="actualizar" onclick="update('categoria')">
-            </form>   
-        </div>
     </div>
-   
        <div  class="contenedor__funcion">
         <button type="button" class="btn btn-primary boton__funcion"  data-toggle="modal" data-target="#modal__subcategorias">Subcategorias  <i class="bi bi-plus-lg" > </i></button>
         <table class='contenido_tabla'>
@@ -75,24 +64,11 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form>  
-                            <a class= 'contenido_tabla_head_colum_el' onclick="getSubcategoria({{$sub->pk_subcategoria}})">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getSubcategoria({{$sub->pk_subcategoria}})"  data-toggle="modal" data-target="#modal__editar_subcat">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
-        <div id="edit_sub" style="font-size:3rem">
-            <form id="subcategoria_actualizar" method="post">
-                @csrf
-                @method('put')
-                <label>Nombre Subcategoria:</label>
-                <input type="hidden" id="pk_subcategoria" value='' disabled>
-                <input type="text" id="subcategoria_nombre" value="" name='nombre'>
-                <select name="fk_categoria" id="edit_categoria_sub">
-
-                </select>
-                <input type="button" value="actualizar" onclick="update('subcategoria')">
-            </form>   
-        </div>
        </div>
       
        <div  class="contenedor__funcion">
@@ -121,25 +97,11 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                            <a class= 'contenido_tabla_head_colum_el' onclick="getProveedor({{$prov->pk_proveedor}})">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getProveedor({{$prov->pk_proveedor}})" data-toggle="modal" data-target="#modal__proveedor_actualizar">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
-        </table>
-        <div style="font-size: 3rem" id="edit_prov">
-            <form id="proveedor_actualizar" method="post">
-                @csrf
-                @method('put')
-                <label>Nombre proveedor:</label>
-                <input type="hidden" id="pk_proveedor" value='' disabled>
-                <input type="text" id="proveedor_nombre" value="" name='nombre'>
-                <label>RFC</label>
-                <input type="text" name="RFC" id='proveedor_rfc'>
-                <label>Dirección</label>
-                <input type="text" name="direccion" id="proveedor_direccion">
-                <input type="button" value="actualizar" onclick="update('proveedor')">
-            </form>
-        </div>  
+        </table> 
        </div>
        
        <div class="contenedor__funcion">
@@ -162,21 +124,11 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                            <a class= 'contenido_tabla_head_colum_el' onclick="getMarca({{$marca->pk_marca}})">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getMarca({{$marca->pk_marca}})" data-toggle="modal" data-target="#modal__edit_marca">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
-        <div id="edit_marca" style="font-size:3rem">
-            <form id="marca_actualizar" method="post">
-                @csrf
-                @method('put')
-                <label>Nombre Marca:</label>
-                <input type="hidden" id="pk_marca" value='' disabled>
-                <input type="text" id="marca_nombre" value="" name='nombre'>
-                <input type="button" value="actualizar" onclick="update('marca')">
-            </form>   
-        </div>
        </div>
      
        <div class="contenedor__funcion">
@@ -219,39 +171,12 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                            <a class= 'contenido_tabla_head_colum_el' onclick="getArticulo({{$art->pk_articulo}})">Editar</a></td>
+                            <a class= 'contenido_tabla_head_colum_el' onclick="getArticulo({{$art->pk_articulo}})" data-toggle="modal" data-target="#modal__editar_art">Editar</a></td>
                     </tr>
                 @endforeach
            </tbody>
         </table>
-        <div id="edit_marca" style="font-size:3rem">
-            <form id="articulo_actualizar" method="post">
-                @csrf
-                @method('put')
-                <label>Nombre Marca:</label>
-                <input type="hidden" id="pk_articulo" value='' disabled>
-                <input type="text" id="articulo_nombre" value="" name='nombre'>
-                <label>Cantidad:</label>
-                <input type="text" id="articulo_cantidad" name="cantidad">
-                <label>Maximos:</label>
-                <input type="text" id="articulo_maximos" name="maximos"><br>
-                <label>Descripción:</label>
-                <input type="text" id="articulo_descripcion" name="descripcion">
-                <label>Marca:</label>
-                <select name="fk_marca" id="articulo_marcas">
 
-                </select>
-                <label>Proveedor:</label>
-                <select name="fk_proveedor" id="articulo_proveedores">
-
-                </select>
-                <label>Subcategoria:</label>
-                <select name="fk_subcategoria" id="articulo_subcategorias">
-
-                </select>
-                <input type="button" value="actualizar" onclick="update('articulo')">
-            </form>   
-        </div>
        </div>
   </div>
   </div>
@@ -306,8 +231,6 @@
       </div>
     </div>
   </div>
-
-
   <!-- Modal Subcategorias-->
 <div class="modal fade" id="modal__subcategorias" tabindex="-1" aria-labelledby="modal__subcategoriasLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -518,9 +441,192 @@
       </div>
     </div>
   </div>
- 
+ <!-- Modal Editar Categoria -->
+ <div class="modal fade" id="modal__editar_cat" tabindex="-1" aria-labelledby="modal__editar_catLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__editar_catLabel">Editar una categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  method="post" class="form__funcion" id="categoria_actualizar">
+                
+                @csrf
+                @method('put')
+                <div class="form-group">
+                    <label for="nombre">Nombre de la Categoria</label>
+                    <span>Nombre de la Categoria</span>
+                    <input type="hidden" id="pk_categoria" value='' disabled>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre de la categoria">
+                </div>
 
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="button" class="btn btn-primary" value="Actualizar" onclick="update('categoria')">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+<!-- Modal Editar Subcategoria -->
 
+<div class="modal fade" id="modal__editar_subcat" tabindex="-1" aria-labelledby="modal__editar_subcatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__editar_subcatLabel">Editar una Subcategoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  method="post" class="form__funcion" id="subcategoria_actualizar">
+                
+                @csrf
+                @method('put')
+                <label class="art">Nombre Subcategoria:</label>
+                <input type="hidden" id="pk_subcategoria" value='' disabled>
+                <input type="text" id="subcategoria_nombre" value="" name='nombre' class="subc">
+                <select name="fk_categoria" id="edit_categoria_sub" class="seleccionar">
+
+                </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="button" class="btn btn-primary" value="Actualizar" onclick="update('subcategoria')">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Editar Proveedor -->
+<div class="modal fade" id="modal__proveedor_actualizar" tabindex="-1" aria-labelledby="modal__proveedor_actualizarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__proveedor_actualizarLabel">Editar una Proveedor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  method="post" class="form__funcion" id="proveedor_actualizar">
+                
+                @csrf
+                @method('put')
+                <div class="form-group">
+                    <label for="nombre">Nombre del proveedor</label>
+                    <span>Nombre del proveedor</span>
+                    <input type="hidden" id="pk_proveedor" value='' disabled>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre del proveedor">
+                    <input type="text" name="RFC" id='proveedor_rfc' class="form-control" placeholder="RFC">
+                    <input type="text" name="direccion" id="proveedor_direccion" class="form-control" placeholder="Direccion">
+                </div>
+
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="button" class="btn btn-primary" value="Actualizar" onclick="update('proveedor')">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<!-- Modal Editar Marca -->
+<div class="modal fade" id="modal__edit_marca" tabindex="-1" aria-labelledby="modal__edit_marcaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__edit_marcaLabel">Editar una categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  method="post" class="form__funcion" id="marca_actualizar">
+                @csrf
+                @method('put')
+                <div class="form-group">
+                    <label for="nombre">Nombre de la Marca</label>
+                    <span>Nombre de la Marca</span>
+                    <input type="hidden" id="pk_marca" value='' disabled>
+                    <input type="text" name="nombre"  class="form-control" placeholder="Escriba un nombre de la marca">
+                </div>
+
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="button" class="btn btn-primary" value="Actualizar" onclick="update('marca')">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<!-- Modal Editar Articulo -->
+<div class="modal fade" id="modal__editar_art" tabindex="-1" aria-labelledby="modal__editar_artLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal__editar_artLabel">Editar un Articulo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  method="post" class="form__funcion" id="articulo_actualizar"> 
+                @csrf
+                @method('put')
+                <label>Nombre Subcategoria:</label>
+                <input type="hidden" id="pk_articulo" value='' disabled>
+                <input type="text" name="nombre"  id="articulo_nombre"  class="form-control" placeholder="Escriba un nombre">
+                <input type="text" name="cantidad"  id="articulo_cantidad" class="form-control" placeholder="Escriba una cantidad">
+                <input type="text" id="articulo_maximos" name="maximos"  class="form-control" placeholder="Escriba un cantidad maxima">
+                <input type="text"  id="articulo_descripcion" name="descripcion"  class="form-control" placeholder="Escriba una descripcion">
+                <label class="art">Marca:</label>
+                <select name="fk_marca" id="articulo_marcas" class="seleccionar">
+
+                </select>
+                <label class="art">Proveedor:</label>
+                <select name="fk_proveedor" id="articulo_proveedores" class="seleccionar">
+
+                </select>
+                <label class="art">Subcategoria:</label>
+                <select name="fk_subcategoria" id="articulo_subcategorias" class="seleccionar">
+
+                </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="button" class="btn btn-primary" value="Actualizar" onclick="update('articulo')">
+                </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
