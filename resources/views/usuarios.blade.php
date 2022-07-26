@@ -65,7 +65,7 @@
                                 @method('delete')
                                 <input type="submit" value="Eliminar">
                             </form> 
-                    </tr>
+                        </tr>
                     @endforeach
                    
                 </tbody>
