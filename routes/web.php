@@ -44,6 +44,7 @@ Route::delete('/subcategoria/eliminar/{pk_subcategoria}',[subcategoriaController
 Route::delete('/proveedor/eliminar/{pk_proveedor}',[proveedorController::class,'eliminar'])->name('proveedor.eliminar');
 Route::delete('/marca/eliminar/{pk_marca}',[marcaController::class,'eliminar'])->name('marca.eliminar');
 Route::delete('/articulo/eliminar/{pk_articulo}',[articuloController::class,'eliminar'])->name('articulo.eliminar');
+Route::delete('/usuarios/eliminar/{id}',[usuariosController::class,'eliminar'])->name('usuario.eliminar');
 
 Route::put('/categoria/actualizar/{pk_categoria}',[categoriaController::class,'actualizar'])->name('categoria.actualizar');
 Route::put('/subcategoria/actualizar/{pk_subcategoria}',[subcategoriaController::class,'actualizar'])->name('subcategoria.actualizar');

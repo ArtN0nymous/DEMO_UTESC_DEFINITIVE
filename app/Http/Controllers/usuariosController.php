@@ -13,11 +13,21 @@ class usuariosController extends Controller
   
         return view('usuarios', compact('usuarios'));
     }
-    function actualizar(User $usuario, Request $req){
-        print($req);
-        echo($req);
-        // $usuario->profType=$req->profType;
-        // $usuario->update();
-        // return redirect()->route('usuarios.getUsers');
+    function actualizar(User $id, Request $req){ 
+       switch ($req->profType){
+            case 'on':
+                $req->profType = 'a';
+                break;
+            case '':
+                $req->profType = 'n';
+                break;
+       }
+       $id->profType=$req->profType;
+        $id->save();
+        return redirect()->route('usuarios.getUsers');
+    }
+    public function eliminar(User $id){
+        $id->delete();
+        return redirect()->route('usuarios.getUsers');
     }
 }

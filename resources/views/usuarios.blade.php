@@ -46,16 +46,25 @@
                                     
         
                                 @else
+                                <form action="{{route('usuarios.actualizar', $user->id)}}" method="post" id="formProfType" >
+                                    @csrf
+                                    @method('put')
                                     <div class="switch-button">
                                         <input type="checkbox" onchange="changeProfType()" name="profType" id="switch-label" checked class="switch-button__checkbox">
                                         <label for="switch-label" class="switch-button__label"></label>
                                     </div>
+                                </form>
                                 
                                 @endif
                             
                             
                         </td>
-                        <td class="contenedor_tabla_head_col"><a href="" class="contenedor_tabla_head_col_el">Eliminar</a></td>
+                        <td class="contenedor_tabla_head_col">
+                            <form action="{{route('usuario.eliminar',$user->id)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Eliminar">
+                            </form> 
                     </tr>
                     @endforeach
                    
