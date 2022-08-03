@@ -1,0 +1,73 @@
+.contenedor{
+    display: grid;
+    grid-template-columns: 25% 70% 0%;
+}
+.contenedor_primario{
+    border-color: black;
+    margin-top: 20px;
+    padding: 10px;
+}
+.lab{
+    font-size: 4rem;
+}
+.name{
+    margin-bottom: 30px;
+    margin-top: 10px;
+
+}
+.name_uno{
+    width: 600px;
+    height: 30px;
+    font-size: 2rem;
+}
+.name_dos{
+    width: 338px;
+    height: 30px;
+    font-size: 2rem;
+}
+.name_tres{
+    width: 100px;
+    height: 30px;
+    font-size: 2rem;  
+}
+.name_cuatro{
+    width: 208px;
+    height: 30px;
+    font-size: 2rem;  
+}
+.desc{
+    width: 600px;
+    height: 100px;
+    font-size: 2rem;
+}
+.lab_el{
+    font-size: 2rem;
+}
+.lab_els{
+    font-size: 2rem;
+    margin-right: 59px;
+}
+.lab_ele{
+    font-size: 2rem;
+    margin-right: 75px;
+}
+.lab_ela{
+    font-size: 2rem;
+    margin-right: 85px;
+}
+.lab_eles{
+    font-size: 2rem;
+    margin-right: 135px;
+}
+.lab_e{
+    font-size: 2rem;
+    margin-right: 67px;
+}
+.bot{
+    width: 80px;
+    height: 30px;
+    font-size: 2rem;
+    margin-left: 400px;
+    margin-top: 20px;
+    background-color: red;
+}

@@ -30,6 +30,12 @@ Route::get('/registrar-usuario', function () {
 Route::get('/index', function () {
     return view('index');
 });
+Route::get('/solicitudes', function(){
+    return view('solicitudes');
+});
+Route::get('/vista_solicitud', function(){
+    return view('vista_solicitudes');
+} );
 Route::get('/bodega',[bodegaController::class,'mostrar'])->name('bodega.mostrar');
 
 Route::post('/categoria/guardar',[categoriaController::class,'insertar'])->name('categoria.insertar');
