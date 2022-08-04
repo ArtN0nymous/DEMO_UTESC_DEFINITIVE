@@ -16,12 +16,12 @@
 
 }
 .name_uno{
-    width: 600px;
+    width: 500px;
     height: 30px;
     font-size: 2rem;
 }
 .name_dos{
-    width: 338px;
+    width: 250px;
     height: 30px;
     font-size: 2rem;
 }
@@ -36,7 +36,7 @@
     font-size: 2rem;  
 }
 .desc{
-    width: 600px;
+    width: 550px;
     height: 100px;
     font-size: 2rem;
 }
@@ -53,15 +53,15 @@
 }
 .lab_ela{
     font-size: 2rem;
-    margin-right: 85px;
+    margin-right: 70px;
 }
 .lab_eles{
     font-size: 2rem;
-    margin-right: 135px;
+    margin-right: 70px;
 }
 .lab_e{
     font-size: 2rem;
-    margin-right: 67px;
+    margin-right: 60px;
 }
 .bot{
     width: 80px;
