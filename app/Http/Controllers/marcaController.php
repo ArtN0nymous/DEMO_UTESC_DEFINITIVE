@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Marca;
+use Exception;
 use Illuminate\Http\Request;
 class marcaController extends Controller
 {
@@ -14,8 +15,12 @@ class marcaController extends Controller
         return redirect()->route('bodega.mostrar');
     }
     public function eliminar(Marca $pk_marca){
-        $pk_marca->delete();
-        return redirect()->route('bodega.mostrar');
+        try{
+            $pk_marca->delete();
+            return redirect()->route('bodega.mostrar');
+        }catch(Exception $e){
+            return redirect()->route('bodega.mostrar',compact('e'));
+        }
     }
     public function actualizar(Marca $pk_marca,Request $req)
     {

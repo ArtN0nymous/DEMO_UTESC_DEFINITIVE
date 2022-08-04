@@ -7,6 +7,7 @@ use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\marcaController;
 use App\Http\Controllers\proveedorController;
 use App\Http\Controllers\subcategoriaController;
+use App\Http\Controllers\usuariosController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -49,12 +50,14 @@ Route::delete('/subcategoria/eliminar/{pk_subcategoria}',[subcategoriaController
 Route::delete('/proveedor/eliminar/{pk_proveedor}',[proveedorController::class,'eliminar'])->name('proveedor.eliminar');
 Route::delete('/marca/eliminar/{pk_marca}',[marcaController::class,'eliminar'])->name('marca.eliminar');
 Route::delete('/articulo/eliminar/{pk_articulo}',[articuloController::class,'eliminar'])->name('articulo.eliminar');
+Route::delete('/usuarios/eliminar/{id}',[usuariosController::class,'eliminar'])->name('usuario.eliminar');
 
 Route::put('/categoria/actualizar/{pk_categoria}',[categoriaController::class,'actualizar'])->name('categoria.actualizar');
 Route::put('/subcategoria/actualizar/{pk_subcategoria}',[subcategoriaController::class,'actualizar'])->name('subcategoria.actualizar');
 Route::put('/proveedor/actualizar/{pk_proveedor}',[proveedorController::class,'actualizar'])->name('proveedor.actualizar');
 Route::put('/marca/actualizar/{pk_marca}',[marcaController::class,'actualizar'])->name('marca.actualizar');
 Route::put('/articulo/actualizar/{pk_articulo}',[articuloController::class,'actualizar'])->name('articulo.actualizar');
+Route::put('/usuarios/actualizar/{id}',[usuariosController::class,'actualizar'])->name('usuarios.actualizar');
 
 Route::get('/getCategoria/{pk_categoria}',[ajaxController::class,'categoria'])->name('categoria.editar');
 Route::get('/getSubcategoria/{pk_subcategoria}',[ajaxController::class,'subcategoria'])->name('subcategoria.editar');
@@ -65,6 +68,9 @@ Route::get('/getCategorias',[ajaxController::class,'categorias'])->name('subcate
 Route::get('/getSubcategorias',[ajaxController::class,'subcategorias'])->name('articulo_subcategorias.editar');
 Route::get('/getProveedores',[ajaxController::class,'proveedores'])->name('articulo_proveedores.editar');
 Route::get('/getMarcas',[ajaxController::class,'marcas'])->name('articulo_marcas.editar');
+
+Route::get('/getUsers', [usuariosController::class, 'getUsers']) ->name('usuarios.getUsers');
+
 
 Route::middleware([
     'auth:sanctum',

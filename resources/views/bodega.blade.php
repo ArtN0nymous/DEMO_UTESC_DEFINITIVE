@@ -107,8 +107,6 @@
       </div>
     </div>
   </div>
-
-
   <!-- Modal Subcategorias-->
 <div class="modal fade" id="modal__subcategorias" tabindex="-1" aria-labelledby="modal__subcategoriasLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -437,8 +435,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form  method="post" class="form__funcion" id="edit_marca">
-                
+            <form  method="post" class="form__funcion" id="marca_actualizar">
                 @csrf
                 @method('put')
                 <div class="form-group">
@@ -471,8 +468,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form  method="post" class="form__funcion" id="editar_art">
-                
+            <form  method="post" class="form__funcion" id="articulo_actualizar"> 
                 @csrf
                 @method('put')
                 <label>Nombre Subcategoria:</label>

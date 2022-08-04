@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Proveedor;
+use Exception;
 use Illuminate\Http\Request;
 
 class proveedorController extends Controller
@@ -18,8 +19,13 @@ class proveedorController extends Controller
         return redirect()->route('bodega.mostrar');
     }
     public function eliminar(Proveedor $pk_proveedor){
-        $pk_proveedor->delete();
-        return redirect()->route('bodega.mostrar');
+        $error='Error';
+        try{
+            $pk_proveedor->delete();
+            return redirect()->route('bodega.mostrar');
+        }catch(Exception $e){
+            return redirect()->route('bodega.mostrar',compact('e'));
+        }
     }
     public function actualizar(Proveedor $pk_proveedor,Request $req)
     {
