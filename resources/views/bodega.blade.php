@@ -46,7 +46,10 @@
                 <td class='contenido_tabla_head_colum'>4745</td>
                 <td class='contenido_tabla_head_colum'>4745</td>
                 <td class='contenido_tabla_head_colum'>4745</td>
-                <td class='contenido_tabla_head_colum'> <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a> <a class= 'contenido_tabla_head_colum_el' href="">Editar</a></td>
+                <td class='contenido_tabla_head_colum'> 
+                <a class= 'contenido_tabla_head_colum_el' href="">Mostrar</a>
+                <a class= 'contenido_tabla_head_colum_el' href="">Editar</a>
+                <a class= 'contenido_tabla_head_colum_el' href="">Eliminar</a></td>
             </tr>
 
        </tbody>
